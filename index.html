@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه گلس دیزاین</title>
+    
+    <!-- فونت وزیر متن -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    
+    <!-- آیکون‌ها -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- تیلویند برای استایل‌دهی سریع -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+            transition: background 0.5s ease;
+        }
+
+        /* افکت شیشه‌ای (Liquid Glass) */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .glass-input {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .glass-input:focus {
+            background: rgba(0, 0, 0, 0.4);
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* اسکرول بار سفارشی */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        /* انیمیشن لودینگ */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body id="mainBody">
+
+    <!-- دکمه ورود به پنل مدیریت -->
+    <button onclick="toggleAdminPanel()" class="fixed top-4 left-4 z-50 glass px-4 py-2 rounded-full hover:bg-white/20 transition cursor-pointer text-sm font-bold flex items-center gap-2">
+        <i class="fas fa-cog fa-spin-hover"></i> پنل مدیریت سایت
+    </button>
+
+    <!-- نوار ناوبری -->
+    <nav class="glass sticky top-0 z-40 w-full mb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <span id="navLogoIcon" class="text-2xl">💎</span>
+                    <h1 id="navTitle" class="font-bold text-xl tracking-wider">اسم سایت شما</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4 space-x-reverse">
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium bg-white/10 hover:bg-white/20 transition">خانه</a>
+                        <a href="#products" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-white/20 transition">محصولات</a>
+                        <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-white/20 transition">درباره ما</a>
+                    </div>
+                </div>
+                <div>
+                    <a id="navInsta" href="#" target="_blank" class="text-2xl hover:text-pink-400 transition transform hover:scale-110 inline-block">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- محتوای اصلی -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        
+        <!-- بخش هیرو (Hero Section) -->
+        <section class="text-center py-20 px-4 glass rounded-3xl mb-16 animate-fade-in relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 id="heroTitle" class="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">عنوان اصلی جذاب</h2>
+                <p id="heroSubtitle" class="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">توضیحات کوتاه سایت شما در اینجا قرار می‌گیرد.</p>
+                <div id="heroOffer" class="inline-block glass px-6 py-3 rounded-full text-yellow-300 font-bold border border-yellow-300/30 mb-8">
+                    ✨ پیشنهاد ویژه: ارسال رایگان برای خریدهای امروز
+                </div>
+                <br>
+                <a href="#products" id="heroBtnText" class="inline-block bg-white text-indigo-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
+                    مشاهده محصولات
+                </a>
+            </div>
+        </section>
+
+        <!-- بخش دسته‌بندی‌ها (فیلتر) -->
+        <div class="flex justify-center flex-wrap gap-4 mb-10 animate-fade-in" style="animation-delay: 0.2s;" id="categoryContainer">
+            <!-- دسته‌بندی‌ها توسط جاوااسکریپت پر می‌شوند -->
+        </div>
+
+        <!-- لیست محصولات -->
+        <div id="products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in" style="animation-delay: 0.4s;" id="productsContainer">
+            <!-- محصولات توسط جاوااسکریپت پر می‌شوند -->
+        </div>
+
+    </main>
+
+    <!-- فوتر -->
+    <footer class="glass mt-12 py-8 text-center text-sm relative z-10">
+        <p id="footerText">© تمامی حقوق برای سایت من محفوظ است.</p>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- پنل مدیریت (مودال) -->
+    <!-- ========================================== -->
+    <div id="adminPanel" class="fixed inset-0 z-[100] hidden">
+        <!-- پس زمینه تاریک -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleAdminPanel()"></div>
+        
+        <!-- بدنه پنل -->
+        <div class="absolute top-0 right-0 h-full w-full md:w-[500px] glass bg-gray-900/90 overflow-y-auto transform transition-transform duration-300 flex flex-col">
+            
+            <div class="p-6 border-b border-white/10 flex justify-between items-center sticky top-0 bg-gray-900/50 backdrop-blur-xl z-20">
+                <h2 class="text-2xl font-bold text-white"><i class="fas fa-tools"></i> تنظیمات سایت</h2>
+                <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+
+            <div class="p-6 space-y-8 pb-20">
+                
+                <!-- تب‌های تنظیمات -->
+                <div class="flex space-x-2 space-x-reverse border-b border-white/10 pb-2">
+                    <button onclick="switchTab('general')" class="tab-btn active px-3 py-1 text-sm font-bold text-blue-400 border-b-2 border-blue-400">عمومی</button>
+                    <button onclick="switchTab('appearance')" class="tab-btn px-3 py-1 text-sm font-bold text-gray-400 hover:text-white">ظاهر</button>
+                    <button onclick="switchTab('products')" class="tab-btn px-3 py-1 text-sm font-bold text-gray-400 hover:text-white">محصولات</button>
+                </div>
+
+                <!-- تنظیمات عمومی -->
+                <div id="tab-general" class="tab-content space-y-4">
+                    <h3 class="text-lg font-bold text-blue-300">اطلاعات پایه</h3>
+                    <div>
+                        <label class="block text-sm mb-1 text-gray-300">نام سایت (هدر)</label>
+                        <input type="text" id="inputNavTitle" class="w-full p-2 rounded glass-input">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1 text-gray-300">لینک اینستاگرام</label>
+                        <input type="text" id="inputInstaLink" class="w-full p-2 rounded glass-input" dir="ltr">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1 text-gray-300">متن فوتر</label>
+                        <input type="text" id="inputFooterText" class="w-full p-2 rounded glass-input">
+                    </div>
+
+                    <h3 class="text-lg font-bold text-blue-300 mt-6">بخش هیرو (بالای سایت)</h3>
+                    <div>
+                        <label class="block text-sm mb-1 text-gray-300">عنوان بزرگ</label>
+                        <input type="text" id="inputHeroTitle" class="w-full p-2 rounded glass-input">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1 text-gray-300">توضیحات زیر عنوان</label>
+                        <textarea id="inputHeroSubtitle" class="w-full p-2 rounded glass-input h-20"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1 text-gray-300">متن پیشنهاد ویژه</label>
+                        <input type="text" id="inputHeroOffer" class="w-full p-2 rounded glass-input">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1 text-gray-300">متن دکمه</label>
+                        <input type="text" id="inputHeroBtn" class="w-full p-2 rounded glass-input">
+                    </div>
+                </div>
+
+                <!-- تنظیمات ظاهر -->
+                <div id="tab-appearance" class="tab-content hidden space-y-4">
+                    <h3 class="text-lg font-bold text-purple-300">رنگ و پس‌زمینه</h3>
+                    <div>
+                        <label class="block text-sm mb-1 text-gray-300">آدرس عکس پس‌زمینه (URL)</label>
+                        <input type="text" id="inputBgUrl" class="w-full p-2 rounded glass-input" dir="ltr" placeholder="https://...">
+                        <p class="text-xs text-gray-400 mt-1">از لینک مستقیم عکس استفاده کنید.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <label class="block text-sm text-gray-300">رنگ تم (دکمه‌ها و هایلایت‌ها):</label>
+                        <input type="color" id="inputThemeColor" class="h-10 w-20 rounded cursor-pointer bg-transparent">
+                    </div>
+                    
+                    <button onclick="resetToDefault()" class="w-full bg-red-500/50 hover:bg-red-500 text-white p-3 rounded glass mt-8 transition">
+                        <i class="fas fa-trash-restore"></i> بازنشانی کل سایت به حالت اولیه
+                    </button>
+                </div>
+
+                <!-- مدیریت محصولات -->
+                <div id="tab-products" class="tab-content hidden space-y-6">
+                    <div class="glass p-4 rounded-lg bg-green-500/10 border-green-500/30">
+                        <h4 class="font-bold mb-2 text-green-300"><i class="fas fa-plus"></i> افزودن محصول جدید</h4>
+                        <div class="space-y-2">
+                            <input type="text" id="newProdName" placeholder="نام محصول" class="w-full p-2 rounded glass-input text-sm">
+                            <input type="text" id="newProdPrice" placeholder="قیمت (تومان)" class="w-full p-2 rounded glass-input text-sm">
+                            <input type="text" id="newProdCat" placeholder="دسته بندی (مثلا: موبایل)" class="w-full p-2 rounded glass-input text-sm">
+                            <input type="text" id="newProdImg" placeholder="لینک عکس محصول" class="w-full p-2 rounded glass-input text-sm" dir="ltr">
+                            <button onclick="addNewProduct()" class="w-full bg-green-600 hover:bg-green-500 text-white p-2 rounded transition">افزودن</button>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-yellow-300">لیست محصولات فعلی</h3>
+                    <div id="adminProductList" class="space-y-3">
+                        <!-- لیست محصولات برای حذف یا ویرایش -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- دکمه ذخیره شناور -->
+            <div class="sticky bottom-0 p-4 bg-gray-900/80 backdrop-blur border-t border-white/10">
+                <button onclick="saveAllChanges()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl shadow-lg transition transform hover:scale-[1.02]">
+                    <i class="fas fa-save"></i> ذخیره تغییرات
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // داده‌های پیش‌فرض (Default State)
+        // ==========================================
+        const defaultData = {
+            settings: {
+                navTitle: "فروشگاه شیشه‌ای",
+                instaLink: "https://instagram.com",
+                footerText: "© 1402 تمامی حقوق محفوظ است | طراحی شده با عشق",
+                heroTitle: "دنیای کیفیت و زیبایی",
+                heroSubtitle: "ما بهترین محصولات را با بهترین قیمت و گارانتی معتبر در اختیار شما قرار می‌دهیم.",
+                heroOffer: "🔥 تخفیف ۵۰٪ برای خرید اول شما",
+                heroBtnText: "شروع خرید هیجان‌انگیز",
+                bgUrl: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop",
+                themeColor: "#4f46e5"
+            },
+            products: [
+                {
+                    id: 1,
+                    name: "هدفون نویز کنسلینگ",
+                    price: "۵,۵۰۰,۰۰۰",
+                    category: "لوازم جانبی",
+                    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop"
+                },
+                {
+                    id: 2,
+                    name: "ساعت هوشمند سری ۸",
+                    price: "۱۲,۰۰۰,۰۰۰",
+                    category: "گجت",
+                    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop"
+                },
+                {
+                    id: 3,
+                    name: "دوربین عکاسی حرفه‌ای",
+                    price: "۴۵,۰۰۰,۰۰۰",
+                    category: "عکاسی",
+                    image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&auto=format&fit=crop"
+                },
+                {
+                    id: 4,
+                    name: "کفش ورزشی نایک",
+                    price: "۳,۲۰۰,۰۰۰",
+                    category: "پوشاک",
+                    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop"
+                }
+            ]
+        };
+
+        // متغیر سراسری برای نگهداری داده‌ها
+        let appData = {};
+
+        // ==========================================
+        // توابع اصلی (Core Functions)
+        // ==========================================
+
+        // بارگذاری داده‌ها (از LocalStorage یا پیش‌فرض)
+        function loadData() {
+            const savedData = localStorage.getItem('glassSiteData');
+            if (savedData) {
+                appData = JSON.parse(savedData);
+            } else {
+                appData = JSON.parse(JSON.stringify(defaultData)); // کپی عمیق
+            }
+            renderSite();
+        }
+
+        // رندر کردن کل سایت بر اساس داده‌ها
+        function renderSite() {
+            const s = appData.settings;
+            
+            // تنظیم متون
+            document.getElementById('navTitle').textContent = s.navTitle;
+            document.getElementById('navInsta').href = s.instaLink;
+            document.getElementById('footerText').textContent = s.footerText;
+            document.getElementById('heroTitle').textContent = s.heroTitle;
+            document.getElementById('heroSubtitle').textContent = s.heroSubtitle;
+            document.getElementById('heroOffer').textContent = s.heroOffer;
+            document.getElementById('heroBtnText').textContent = s.heroBtnText;
+
+            // تنظیم استایل‌ها
+            document.body.style.backgroundImage = `url('${s.bgUrl}')`;
+            // اعمال رنگ تم (به صورت ساده روی دکمه هیرو)
+            document.getElementById('heroBtnText').style.color = s.themeColor;
+            
+            // رندر محصولات
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+
+            // استخراج دسته‌بندی‌ها
+            const categories = [...new Set(appData.products.map(p => p.category))];
+            renderCategories(categories);
+
+            appData.products.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl overflow-hidden p-4 group relative';
+                card.innerHTML = `
+                    <div class="absolute top-4 right-4 bg-black/50 backdrop-blur px-2 py-1 rounded text-xs font-bold text-white z-10">
+                        ${p.category}
+                    </div>
+                    <div class="h-48 rounded-xl overflow-hidden mb-4 relative">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/300?text=بدون+عکس'">
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">${p.name}</h3>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-lg font-bold text-yellow-300">${p.price} <span class="text-xs text-white/70">تومان</span></span>
+                        <button class="bg-white/20 hover:bg-white text-white hover:text-black p-2 rounded-full transition shadow-lg backdrop-blur">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderCategories(categories) {
+            const container = document.getElementById('categoryContainer');
+            container.innerHTML = `<button class="glass px-4 py-2 rounded-full text-sm font-bold hover:bg-white/20 transition active-cat">همه</button>`;
+            categories.forEach(cat => {
+                container.innerHTML += `<button class="glass px-4 py-2 rounded-full text-sm font-bold hover:bg-white/20 transition">${cat}</button>`;
+            });
+        }
+
+        // ==========================================
+        // منطق پنل مدیریت (Admin Logic)
+        // ==========================================
+
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            const isHidden = panel.classList.contains('hidden');
+            
+            if (isHidden) {
+                // باز کردن پنل: پر کردن فیلدها با داده‌های فعلی
+                populateAdminInputs();
+                panel.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
+            }
+        }
+
+        function populateAdminInputs() {
+            const s = appData.settings;
+            document.getElementById('inputNavTitle').value = s.navTitle;
+            document.getElementById('inputInstaLink').value = s.instaLink;
+            document.getElementById('inputFooterText').value = s.footerText;
+            document.getElementById('inputHeroTitle').value = s.heroTitle;
+            document.getElementById('inputHeroSubtitle').value = s.heroSubtitle;
+            document.getElementById('inputHeroOffer').value = s.heroOffer;
+            document.getElementById('inputHeroBtn').value = s.heroBtnText;
+            document.getElementById('inputBgUrl').value = s.bgUrl;
+            document.getElementById('inputThemeColor').value = s.themeColor;
+
+            renderAdminProductList();
+        }
+
+        function renderAdminProductList() {
+            const list = document.getElementById('adminProductList');
+            list.innerHTML = '';
+            
+            appData.products.forEach((p, index) => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center gap-3 p-3 glass rounded bg-white/5';
+                item.innerHTML = `
+                    <img src="${p.image}" class="w-12 h-12 rounded object-cover">
+                    <div class="flex-1">
+                        <p class="font-bold text-sm">${p.name}</p>
+                        <p class="text-xs text-gray-400">${p.price}</p>
+                    </div>
+                    <button onclick="deleteProduct(${index})" class="text-red-400 hover:text-red-600 transition p-2">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function addNewProduct() {
+            const name = document.getElementById('newProdName').value;
+            const price = document.getElementById('newProdPrice').value;
+            const cat = document.getElementById('newProdCat').value;
+            const img = document.getElementById('newProdImg').value;
+
+            if(!name || !price) {
+                alert('لطفا نام و قیمت را وارد کنید');
+                return;
+            }
+
+            appData.products.push({
+                id: Date.now(),
+                name: name,
+                price: price,
+                category: cat || 'عمومی',
+                image: img || 'https://via.placeholder.com/300'
+            });
+
+            // خالی کردن فرم
+            document.getElementById('newProdName').value = '';
+            document.getElementById('newProdPrice').value = '';
+            document.getElementById('newProdCat').value = '';
+            document.getElementById('newProdImg').value = '';
+
+            renderAdminProductList();
+            alert('محصول به لیست اضافه شد (برای اعمال نهایی دکمه ذخیره پایین را بزنید)');
+        }
+
+        function deleteProduct(index) {
+            if(confirm('آیا مطمئن هستید که می‌خواهید این محصول را حذف کنید؟')) {
+                appData.products.splice(index, 1);
+                renderAdminProductList();
+            }
+        }
+
+        function saveAllChanges() {
+            // دریافت داده‌ها از اینپوت‌ها
+            appData.settings.navTitle = document.getElementById('inputNavTitle').value;
+            appData.settings.instaLink = document.getElementById('inputInstaLink').value;
+            appData.settings.footerText = document.getElementById('inputFooterText').value;
+            appData.settings.heroTitle = document.getElementById('inputHeroTitle').value;
+            appData.settings.heroSubtitle = document.getElementById('inputHeroSubtitle').value;
+            appData.settings.heroOffer = document.getElementById('inputHeroOffer').value;
+            appData.settings.heroBtnText = document.getElementById('inputHeroBtn').value;
+            appData.settings.bgUrl = document.getElementById('inputBgUrl').value;
+            appData.settings.themeColor = document.getElementById('inputThemeColor').value;
+
+            // ذخیره در لوکال استوریج
+            localStorage.setItem('glassSiteData', JSON.stringify(appData));
+            
+            // اعمال تغییرات
+            renderSite();
+            toggleAdminPanel();
+            alert('تغییرات با موفقیت ذخیره شد! دمت گرم.');
+        }
+
+        function resetToDefault() {
+            if(confirm('آیا مطمئن هستید؟ همه تغییرات شما پاک می‌شود و سایت به حالت اول برمی‌گردد.')) {
+                localStorage.removeItem('glassSiteData');
+                loadData();
+                toggleAdminPanel();
+            }
+        }
+
+        // ==========================================
+        // ابزارها (Tabs Logic)
+        // ==========================================
+        function switchTab(tabName) {
+            // مخفی کردن همه تب‌ها
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // نمایش تب انتخاب شده
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            
+            // مدیریت کلاس اکتیو دکمه‌ها
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-blue-400', 'border-b-2', 'border-blue-400');
+                btn.classList.add('text-gray-400');
+            });
+            const activeBtn = event.target;
+            activeBtn.classList.remove('text-gray-400');
+            activeBtn.classList.add('text-blue-400', 'border-b-2', 'border-blue-400');
+        }
+
+        // شروع برنامه
+        window.onload = loadData;
+
+    </script>
+</body>
+</html>
+
